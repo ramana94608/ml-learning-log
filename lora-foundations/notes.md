@@ -16,3 +16,9 @@
 - Overfitting is when the model memorizes the practice readings including their noise, so it fails on new readings because the new noise is different.
 - Two thermometers: train loss = score on the practice readings, val loss = score on readings the model never saw. Practice great, exam terrible = memorized, not learned.
 - Run result: honest line (degree 1) train 1.073, val 1.245. Memorizer (degree 16) train 0.777, val 9.607.
+
+## Day 3 (2026-10-22): the adapter, and alpha
+
+- LoRa learns patterns from examples, doesn’t take orders
+- The base model stays frozen. The adapter is a small trainable side path: rank 8 means two skinny sheets, 16,000 numbers against a frozen million, about 1.6%.
+- Alpha is the volume knob, and the real scale is alpha divided by rank. Alpha equal to rank means volume 1. Alpha twice the rank means the adapter hits with double impact and drowns the base model (the Kaggle board case: looping, score 0.0, while its loss still fell to 0.51).
