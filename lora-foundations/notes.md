@@ -22,3 +22,9 @@
 - LoRa learns patterns from examples, doesn’t take orders
 - The base model stays frozen. The adapter is a small trainable side path: rank 8 means two skinny sheets, 16,000 numbers against a frozen million, about 1.6%.
 - Alpha is the volume knob, and the real scale is alpha divided by rank. Alpha equal to rank means volume 1. Alpha twice the rank means the adapter hits with double impact and drowns the base model (the Kaggle board case: looping, score 0.0, while its loss still fell to 0.51).
+
+## Day 4 (2026-10-23): the volume knob, in numbers
+
+- The knob changes how hard the notes push, not where they push.
+- Multiplying two lists: line them up, multiply each pair, add the results. A @ x = 1*1 + 1*2 = 3. A matrix is recipes stacked; each row runs the same pair trick on the input.
+- Script: day4_volume_knob.py. Frozen W passes the reading [1, 2] through untouched, the nudge is [3, 0]. Run: s = 0 gives [1, 2], s = 0.5 gives [2.5, 2], s = 1 gives [4, 2], s = 2 gives [7, 2]: at double volume the notes drag the scientist's 1 to 7.
